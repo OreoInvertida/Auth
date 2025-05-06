@@ -18,6 +18,6 @@ async def save_user_credentials(email: str, password: str):
 async def verify_user_credentials(email: str, password: str):
     collection = mongo.db["credentials"]
     user = await collection.find_one({"email": email})
-    if not user or not bcrypt.verify(password, user["password"]):
+    if not user or password != user["password"]:
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     return True
