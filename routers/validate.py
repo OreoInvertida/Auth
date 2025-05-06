@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from services.validate_service import validate_citizen
+from services.credentials_service import save_user_credentials
 from fastapi.responses import JSONResponse
 from fastapi import Response
 
@@ -8,6 +9,7 @@ router = APIRouter()
 
 class ValidationInput(BaseModel):
     id: int
+    email: str
     password: str
 
 @router.post("/validate/")
@@ -31,6 +33,7 @@ async def validate_user(data: ValidationInput):
     if result["status"] == "registered":
         return JSONResponse(status_code=200, content=result)
     elif result["status"] == "not_registered":
+        await save_user_credentials(data.email, data.password)
         return Response(status_code=204)
 
 # Validación simple de seguridad de contraseña

@@ -24,7 +24,7 @@ async def validate_citizen(citizen_id: int):
             elif response.status_code == 204:
                 return {"status": "not_registered"}
             elif response.status_code in [500, 501]:
-                logger.error(f"⛔ Error en API externa: {response.text}")
+                logger.error(f"Error en API externa: {response.text}")
                 raise HTTPException(
                     status_code=502,
                     detail="Error desde API de Registraduría"
@@ -34,5 +34,5 @@ async def validate_citizen(citizen_id: int):
                 raise HTTPException(status_code=500, detail="Respuesta inesperada")
 
         except httpx.RequestError as e:
-            logger.error(f"⛔ Error de conexión: {e}")
+            logger.error(f"Error de conexión: {e}")
             raise HTTPException(status_code=503, detail=str(e))
