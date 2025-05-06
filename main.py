@@ -2,6 +2,8 @@
 from fastapi import FastAPI
 from database.mongodb import mongo
 from routers.validate import router as validate_router
+from routers.login import router as login_router
+
 
 app = FastAPI(title="Auth Microservice")
 
@@ -15,3 +17,4 @@ async def shutdown_db():
 
 
 app.include_router(validate_router, prefix="/auth", tags=["Validation"])
+app.include_router(login_router, prefix="/auth", tags=["Login"])
