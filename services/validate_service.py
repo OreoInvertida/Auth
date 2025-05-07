@@ -10,7 +10,7 @@ load_dotenv()
 REGISTRADURIA_API = os.getenv("REGISTRADURIA_API")
 
 async def validate_citizen(citizen_id: int):
-    url = f"{REGISTRADURIA_API}/{citizen_id}"
+    url = f"{REGISTRADURIA_API}/validateCitizen/{citizen_id}"
     logger.info(f"→ Validando ciudadano con ID: {citizen_id}")
     logger.info(f"→ Consultando URL: {url}")
 
