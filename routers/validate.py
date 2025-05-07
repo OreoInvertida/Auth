@@ -12,10 +12,10 @@ class ValidationInput(BaseModel):
     email: str
     password: str
 
-@router.post("/validate/")
+@router.post("/validate")
 async def validate_user(data: ValidationInput):
     # Validar ID
-    print(data.id)
+    print(data)
     if len(str(data.id)) < 10:
         raise HTTPException(
             status_code=421,

@@ -14,9 +14,15 @@ spec:
     spec:
       containers:
         - name: auth
-          image: auth-image:latest
+          image: us-south1-docker.pkg.dev/micro-chiller-458819-r4/oreo-repository/auth:latest
           ports:
             - containerPort: 8000
           envFrom:
             - configMapRef:
                 name: auth-config
+          env:
+            - name : MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secrets
+                  key: MONGO_URI
