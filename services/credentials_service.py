@@ -3,7 +3,7 @@ from database.mongodb import mongo
 from passlib.hash import bcrypt
 from fastapi import HTTPException
 
-async def save_user_credentials(email: str, password: str):
+async def save_user_credentials(user_id:int, email: str, password: str):
     collection = mongo.db["credentials"]
 
     existing = await collection.find_one({"email": email})
@@ -11,8 +11,10 @@ async def save_user_credentials(email: str, password: str):
         return  # Ya registrado
 
     await collection.insert_one({
+        "user_id":user_id,
         "email": email,
-        "password": password
+        "password": password,
+        "type": "citizen",
     })
 
 async def verify_user_credentials(email: str, password: str):

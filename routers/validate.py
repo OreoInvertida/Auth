@@ -15,6 +15,7 @@ class ValidationInput(BaseModel):
 @router.post("/validate/")
 async def validate_user(data: ValidationInput):
     # Validar ID
+    print(data.id)
     if len(str(data.id)) < 10:
         raise HTTPException(
             status_code=421,
@@ -33,7 +34,7 @@ async def validate_user(data: ValidationInput):
     if result["status"] == "registered":
         return JSONResponse(status_code=200, content=result)
     elif result["status"] == "not_registered":
-        await save_user_credentials(data.email, data.password)
+        await save_user_credentials(data.id,data.email, data.password)
         return Response(status_code=204)
 
 # Validación simple de seguridad de contraseña

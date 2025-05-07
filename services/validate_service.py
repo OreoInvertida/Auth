@@ -30,7 +30,7 @@ async def validate_citizen(citizen_id: int):
                     detail="Error desde API de Registraduría"
                 )
             else:
-                logger.warning("⚠️ Respuesta inesperada.")
+                logger.warning("Respuesta inesperada.")
                 raise HTTPException(status_code=500, detail="Respuesta inesperada")
 
         except httpx.RequestError as e:
