@@ -4,5 +4,5 @@ metadata:
   name: auth-config
 data:
   REGISTRADURIA_API: "https://govcarpeta-apis-4905ff3c005b.herokuapp.com/apis/"
-  MONGO_URI: "mongodb://localhost:27017"
+  MONGO_URI: "mongodb+srv://oreo:negronauta@authentication.nppj2o.mongodb.net/?retryWrites=true&w=majority&appName=Authentication"
   AUTH_DB_NAME: "auth_db"
