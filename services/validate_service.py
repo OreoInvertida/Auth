@@ -5,7 +5,7 @@ from utils.logger import logger
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+#load_dotenv()
 
 REGISTRADURIA_API = os.getenv("REGISTRADURIA_API")
 
