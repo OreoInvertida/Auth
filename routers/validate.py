@@ -12,24 +12,10 @@ class ValidationInput(BaseModel):
     email: str
     password: str
 
-# Validación simple de seguridad de contraseña
-def validate_password_strength(password: str) -> bool:
-    import re
-    if (len(password) >= 8 and
-        re.search(r"[A-Z]", password) and
-        re.search(r"[a-z]", password) and
-        re.search(r"\d", password) and
-        re.search(r"[!@#$%^&*(),.?\":{}|<>]", password)):
-        return True
-    return False
-
-
-
-
 @router.post("/validate")
 async def validate_user(data: ValidationInput):
     # Validar ID
-    print(data.id)
+    print(data)
     if len(str(data.id)) < 10:
         raise HTTPException(
             status_code=421,

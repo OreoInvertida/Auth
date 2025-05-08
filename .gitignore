@@ -6,7 +6,7 @@ services/__psycache__/
 utils/__psycache__/
 *.pyc
 *.pyo
-
+*secrets-yaml
 # Envs
 venv/
 .env

@@ -16,5 +16,5 @@ async def shutdown_db():
     await mongo.close()
 
 
-app.include_router(validate_router, prefix="/auth", tags=["Validation"])
-app.include_router(login_router, prefix="/auth", tags=["Login"])
+app.include_router(validate_router, tags=["Validation"])
+app.include_router(login_router,tags=["Login"])
