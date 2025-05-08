@@ -12,6 +12,6 @@ class LoginInput(BaseModel):
 
 @router.post("/login")
 async def login_user(data: LoginInput):
-    await verify_user_credentials(data.email, data.password)
-    token = create_access_token({"sub": data.email})
+    user = await verify_user_credentials(data.email, data.password)
+    token = create_access_token({"sub": str(user["user_id"])})
     return {"access_token": token, "token_type": "bearer"}
