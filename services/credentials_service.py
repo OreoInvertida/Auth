@@ -6,7 +6,7 @@ from fastapi import HTTPException
 async def save_user_credentials(user_id:int, email: str, password: str):
     collection = mongo.db["credentials"]
 
-    existing = await collection.find_one({"email": email})
+    existing = await collection.find_one({"user_id": user_id})
     if existing:
         return  # Ya registrado
 

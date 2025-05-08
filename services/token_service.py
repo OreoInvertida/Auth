@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 SECRET_KEY = os.getenv("JWT_SECRET", "super-secret-key")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+ACCESS_TOKEN_EXPIRE_MINUTES = 1000
 
 security = HTTPBearer()
 
