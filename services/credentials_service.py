@@ -9,6 +9,10 @@ async def save_user_credentials(user_id:int, email: str, password: str):
     existing = await collection.find_one({"user_id": user_id})
     if existing:
         return  # Ya registrado
+    
+    existing_email = await collection.find_one({"email": email})
+    if existing_email:
+        raise HTTPException(status_code=409, detail="El correo ya está registrado.")
 
     await collection.insert_one({
         "user_id":user_id,

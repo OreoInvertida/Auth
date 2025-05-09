@@ -48,6 +48,7 @@ async def validate_user(data: ValidationInput):
     if result["status"] == "registered":
         return JSONResponse(status_code=200, content=result)
     elif result["status"] == "not_registered":
+        
         await save_user_credentials(data.id,data.email, data.password)
         return Response(status_code=204)
 
