@@ -28,3 +28,11 @@ async def verify_user_credentials(email: str, password: str):
     if not user or password != user["password"]:
         raise HTTPException(status_code=401, detail="Credenciales inválidas")
     return user
+
+
+async def delete_user(user_id: int):
+    collection = mongo.db["credentials"]
+    result = await collection.delete_one({"user_id": user_id})
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+    return {"message": "Usuario eliminado exitosamente."}
