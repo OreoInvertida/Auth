@@ -5,7 +5,7 @@ from routers.validate import router as validate_router
 from routers.login import router as login_router
 
 
-app = FastAPI(title="Auth Microservice")
+app = FastAPI(title="Auth Microservice", docs_url="/auth/docs", redoc_url="/redoc", openapi_url="/auth/openapi.json")
 
 @app.on_event("startup")
 async def startup_db():
